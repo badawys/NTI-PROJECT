@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import courseRouter
+  from "./routes/course.routes";
 
 const app = express();
 
@@ -16,6 +18,11 @@ app.get(
       message: "API is running"
     });
   }
+);
+
+app.use(
+  "/api/courses",
+  courseRouter
 );
 
 export default app;
