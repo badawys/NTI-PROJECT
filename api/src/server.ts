@@ -10,13 +10,10 @@ const port = Number(
   process.env.PORT ?? 3000
 );  
 
-const mongoUri =
-  process.env.MONGODB_URI ?? '';
+const mongoUri = process.env.MONGODB_URI?.trim() || '';
 
-if (!mongoUri) {
-  throw new Error(
-    "MONGODB_URI is required"
-  );
+if (!mongoUri || mongoUri === 'undefined' || mongoUri === 'null') {
+  throw new Error("MONGODB_URI is required and must be a valid connection string");
 }
 
 async function startServer(): Promise<void> {
