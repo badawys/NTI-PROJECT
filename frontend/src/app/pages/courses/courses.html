@@ -2,17 +2,17 @@
 
   <h1>Courses</h1>
 
-  @if (loading) {
+  @if (loading()) {
     <p>Loading courses...</p>
   }
 
-  @if (message) {
-    <p>{{ message }}</p>
+  @if (message()) {
+    <p>{{ message() }}</p>
   }
 
   <div class="course-list">
 
-    @for (course of courses; track course._id) {
+    @for (course of courses(); track course._id) {
 
       <article class="course-card">
 
@@ -41,6 +41,12 @@
           {{ course.level }}
         </p>
 
+        <button type="button" (click)="deleteCourse(course._id)">
+          Delete
+        </button>
+        <button type="button" (click)="startEdit(course)">
+          Edit
+        </button>
       </article>
 
     } @empty {
@@ -51,4 +57,98 @@
 
   </div>
 
+  <section class="form-section">
+
+    <h2>
+      Add Course
+    </h2>
+
+    <form (ngSubmit)="saveCourse()">
+
+      <label>
+        Title
+
+        <input
+          type="text"
+          name="title"
+          [(ngModel)]="form.title"
+          required
+        />
+      </label>
+
+      <label>
+        Description
+
+        <textarea
+          name="description"
+          [(ngModel)]="form.description"
+          required
+        ></textarea>
+      </label>
+
+      <label>
+        Duration Hours
+
+        <input
+          type="number"
+          name="durationHours"
+          [(ngModel)]="form.durationHours"
+          min="1"
+          required
+        />
+      </label>
+
+      <label>
+        Price
+
+        <input
+          type="number"
+          name="price"
+          [(ngModel)]="form.price"
+          min="0"
+          required
+        />
+      </label>
+
+      <label>
+        Level
+
+        <select
+          name="level"
+          [(ngModel)]="form.level"
+        >
+          <option value="Beginner">
+            Beginner
+          </option>
+
+          <option value="Intermediate">
+            Intermediate
+          </option>
+
+          <option value="Advanced">
+            Advanced
+          </option>
+        </select>
+      </label>
+
+      <label>
+        <input
+          type="checkbox"
+          name="active"
+          [(ngModel)]="form.active"
+        />
+
+        Active
+      </label>
+
+      <button type="submit">
+        Save Course
+      </button>
+
+    </form>
+
+  </section>
+
+
 </section>
+ 
