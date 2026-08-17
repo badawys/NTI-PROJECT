@@ -1,0 +1,28 @@
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 4%;
+  background: white;
+  border-bottom: 1px solid #ddd;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+nav a.active {
+  font-weight: 700;
+  color: red;
+}

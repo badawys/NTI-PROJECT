@@ -1,1 +1,54 @@
-<p>courses works!</p>
+<section class="page">
+
+  <h1>Courses</h1>
+
+  @if (loading) {
+    <p>Loading courses...</p>
+  }
+
+  @if (message) {
+    <p>{{ message }}</p>
+  }
+
+  <div class="course-list">
+
+    @for (course of courses; track course._id) {
+
+      <article class="course-card">
+
+        <h2>
+          {{ course.title }}
+        </h2>
+
+        <p>
+          {{ course.description }}
+        </p>
+
+        <p>
+          Duration:
+          {{ course.durationHours }}
+          hours
+        </p>
+
+        <p>
+          Price:
+          {{ course.price }}
+          EGP
+        </p>
+
+        <p>
+          Level:
+          {{ course.level }}
+        </p>
+
+      </article>
+
+    } @empty {
+
+      <p>No courses found.</p>
+
+    }
+
+  </div>
+
+</section>
